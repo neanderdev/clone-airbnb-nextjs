@@ -55,7 +55,6 @@ export function RegisterModal() {
             />
 
             <Input
-                type="email"
                 id="email"
                 label="Email"
                 disabled={isLoading}

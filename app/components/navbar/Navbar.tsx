@@ -8,7 +8,7 @@ import { Search } from "./Search";
 import { UserMenu } from "./UserMenu";
 
 interface NavbarProps {
-    currentUser?: User | null;
+    currentUser: User | null;
 };
 
 export function Navbar({ currentUser }: NavbarProps) {

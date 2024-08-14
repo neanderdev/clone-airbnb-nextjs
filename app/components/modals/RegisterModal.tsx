@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -91,14 +92,14 @@ export function RegisterModal() {
             <Button
                 label="Continue with Google"
                 icon={FcGoogle}
-                onClick={() => { }}
+                onClick={() => signIn("google")}
                 outline
             />
 
             <Button
                 label="Continue with Github"
                 icon={AiFillGithub}
-                onClick={() => { }}
+                onClick={() => signIn("github")}
                 outline
             />
 

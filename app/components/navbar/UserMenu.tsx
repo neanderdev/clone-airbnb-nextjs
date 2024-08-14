@@ -12,7 +12,7 @@ import { Avatar } from "../Avatar";
 import { MenuItem } from "./MenuItem";
 
 interface UserMenuProps {
-    currentUser?: User | null;
+    currentUser: User | null;
 };
 
 export function UserMenu({ currentUser }: UserMenuProps) {
@@ -41,7 +41,7 @@ export function UserMenu({ currentUser }: UserMenuProps) {
                     <AiOutlineMenu />
 
                     <div className="hidden md:block">
-                        <Avatar />
+                        <Avatar src={currentUser?.image} />
                     </div>
                 </div>
             </div>

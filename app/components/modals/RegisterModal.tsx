@@ -2,12 +2,13 @@
 
 import axios from "axios";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 
+import { useLoginModal } from "../../hooks/useLoginModal";
 import { useRegisterModal } from "../../hooks/useRegisterModal";
 
 import { Button } from "../Button";
@@ -17,6 +18,7 @@ import { Modal } from "./Modal";
 
 export function RegisterModal() {
     const registerModal = useRegisterModal();
+    const loginModal = useLoginModal();
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -85,6 +87,11 @@ export function RegisterModal() {
         </div>
     );
 
+    const toggle = useCallback(() => {
+        registerModal.onClose();
+        loginModal.onOpen();
+    }, [registerModal, loginModal]);
+
     const footerContent = (
         <div className="flex flex-col gap-4 mt-3">
             <hr />
@@ -109,7 +116,7 @@ export function RegisterModal() {
 
                     <div
                         className="text-neutral-800 cursor-pointer hover:underline"
-                        onClick={registerModal.onClose}
+                        onClick={toggle}
                     >
                         Log in
                     </div>

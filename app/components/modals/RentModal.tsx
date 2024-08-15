@@ -8,6 +8,7 @@ import { useRentModal } from "../../hooks/useRentModal";
 
 import { Heading } from "../Heading";
 import { CategoryInput } from "../inputs/CategoryInput";
+import { Counter } from "../inputs/Counter";
 import { CountrySelect } from "../inputs/CountrySelect";
 import { categories } from "../navbar/Categories";
 import { Modal } from "./Modal";
@@ -51,6 +52,9 @@ export function RentModal() {
 
     const categoryValue = watch("category");
     const locationValue = watch("location");
+    const guestCountValue = watch("guestCount");
+    const roomCountValue = watch("roomCount");
+    const bathroomCountValue = watch("bathroomCount");
 
     const Map = useMemo(() => dynamic(() => import('../Map').then((fn) => fn.Map), {
         ssr: false,
@@ -125,6 +129,42 @@ export function RentModal() {
 
                 <Map
                     center={locationValue?.latlng}
+                />
+            </div>
+        );
+    }
+
+    if (step === STEPS.INFO) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <Heading
+                    title="Share some basics about your place"
+                    subtitle="What amenities do you have?"
+                />
+
+                <Counter
+                    title="Guests"
+                    subtitle="How many guests do you allow?"
+                    value={guestCountValue}
+                    onChange={(value) => setCustomValue("guestCount", value)}
+                />
+
+                <hr />
+
+                <Counter
+                    title="Rooms"
+                    subtitle="How many rooms do you have?"
+                    value={roomCountValue}
+                    onChange={(value) => setCustomValue("roomCount", value)}
+                />
+
+                <hr />
+
+                <Counter
+                    title="Bathrooms"
+                    subtitle="How many bathrooms do you have?"
+                    value={bathroomCountValue}
+                    onChange={(value) => setCustomValue("bathroomCount", value)}
                 />
             </div>
         );

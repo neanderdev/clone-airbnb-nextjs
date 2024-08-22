@@ -10,14 +10,14 @@ import { Container } from "../components/Container";
 import { Heading } from "../components/Heading";
 import { ListingCard } from "../components/listings/ListingCard";
 
-interface TripsClientProps {
+interface ReservationsClientProps {
     reservations: (Reservation & {
-        listing: Listing;
+        listing: Listing
     })[];
     currentUser?: User | null;
 };
 
-export function TripsClient({ reservations, currentUser }: TripsClientProps) {
+export function ReservationsClient({ reservations, currentUser }: ReservationsClientProps) {
     const router = useRouter();
     const [deletingId, setDeletingId] = useState("");
 
@@ -30,8 +30,8 @@ export function TripsClient({ reservations, currentUser }: TripsClientProps) {
 
                 router.refresh();
             })
-            .catch((error) => {
-                toast.error(error?.response?.data?.error);
+            .catch(() => {
+                toast.error("Something went wrong.");
             })
             .finally(() => {
                 setDeletingId("");
@@ -41,8 +41,8 @@ export function TripsClient({ reservations, currentUser }: TripsClientProps) {
     return (
         <Container>
             <Heading
-                title="Trips"
-                subtitle="Where you've been and where you're going"
+                title="Reservations"
+                subtitle="Bookings on your properties"
             />
 
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
@@ -54,7 +54,7 @@ export function TripsClient({ reservations, currentUser }: TripsClientProps) {
                         actionId={reservation.id}
                         onAction={onCancel}
                         disabled={deletingId === reservation.id}
-                        actionLabel="Cancel reservation"
+                        actionLabel="Cancel guest reservation"
                         currentUser={currentUser}
                     />
                 ))}

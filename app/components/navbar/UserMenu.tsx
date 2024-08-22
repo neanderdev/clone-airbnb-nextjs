@@ -74,7 +74,7 @@ export function UserMenu({ currentUser }: UserMenuProps) {
 
                             <MenuItem
                                 label="My reservations"
-                                onClick={() => { }}
+                                onClick={() => router.push("/reservations")}
                             />
 
                             <MenuItem
